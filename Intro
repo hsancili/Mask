@@ -1,0 +1,14 @@
+PImage img12;
+
+void intro() {
+   PImage img12 = loadImage("about.png");
+  background(img12);
+ 
+ 
+  textSize(26);
+  fill(255);
+  noStroke();
+  
+ 
+text("[ press any key to start ]", width/2, height-height/4);
+}
