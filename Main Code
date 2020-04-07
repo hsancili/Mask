@@ -1,0 +1,45 @@
+import gab.opencv.*;
+import java.awt.Rectangle;
+boolean startScreen = true;
+boolean play = false;
+PImage img, flowercrowns, masks;
+
+OpenCV opencv;
+Rectangle[] faces;
+
+void setup() {
+  opencv = new OpenCV(this, "yourImage.jpg");
+  size(720, 720);
+  
+  opencv.loadCascade(OpenCV.CASCADE_FRONTALFACE);  
+  faces = opencv.detect();
+}
+
+void draw() {
+  if (startScreen) {
+  intro();
+  }
+ 
+ if (play) {
+   //background img;
+   opencv = new OpenCV(this, "yourImage.jpg");
+
+  image(opencv.getInput(), 0, 0);
+   
+   //setup for flowers randomly generated
+  float a = random(1, 5);
+   //int flowerNumber = (int (a));)  
+   int pictureNum = int (a);
+   flowercrowns = loadImage(pictureNum + ".png");
+   //flowercrowns = loadImage("leaves.png");
+
+  frameRate(2);
+  for (int i = 0; i < faces.length; i++) {
+   image(flowercrowns, faces[i].x, faces[i].y, faces[i].width, faces[i].height);
+  }
+  }
+}
+void keyPressed() {
+  startScreen = false;
+  play = true;
+}
